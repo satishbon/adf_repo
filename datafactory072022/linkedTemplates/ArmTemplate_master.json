@@ -27,11 +27,19 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics'"
 		},
+		"datalakegen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'datalakegen2'"
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azurelake2022.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage_newparquetfolder_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://azurelake2022.dfs.core.windows.net/"
+		},
+		"datalakegen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azurelake2022.dfs.core.windows.net/"
 		},
@@ -77,11 +85,17 @@
 					"AzureSynapseAnalytics_connectionString": {
 						"value": "[parameters('AzureSynapseAnalytics_connectionString')]"
 					},
+					"datalakegen2_accountKey": {
+						"value": "[parameters('datalakegen2_accountKey')]"
+					},
 					"AzureDataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_properties_typeProperties_url')]"
 					},
 					"AzureDataLakeStorage_newparquetfolder_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_newparquetfolder_properties_typeProperties_url')]"
+					},
+					"datalakegen2_properties_typeProperties_url": {
+						"value": "[parameters('datalakegen2_properties_typeProperties_url')]"
 					}
 				}
 			},

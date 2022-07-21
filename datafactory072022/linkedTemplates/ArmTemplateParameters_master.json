@@ -20,10 +20,16 @@
 		"AzureSynapseAnalytics_connectionString": {
 			"value": ""
 		},
+		"datalakegen2_accountKey": {
+			"value": ""
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"value": "https://azurelake2022.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage_newparquetfolder_properties_typeProperties_url": {
+			"value": "https://azurelake2022.dfs.core.windows.net/"
+		},
+		"datalakegen2_properties_typeProperties_url": {
 			"value": "https://azurelake2022.dfs.core.windows.net/"
 		},
 		"containerUri": {
