@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "datafactory072022"
+		},
+		"AzureDataLakeStorage_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage_newparquetfolder_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase_salesorderheader_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage_properties_typeProperties_url": {
+			"value": "https://azurelake2022.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage_newparquetfolder_properties_typeProperties_url": {
+			"value": "https://azurelake2022.dfs.core.windows.net/"
+		}
+	}
+}
