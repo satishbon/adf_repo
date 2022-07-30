@@ -5,42 +5,6 @@
 		"factoryName": {
 			"value": "datafactory072022"
 		},
-		"adlsgen2_linkedstorage_accountKey": {
-			"value": ""
-		},
-		"linkedservice_IRselfhosted_password": {
-			"value": ""
-		},
-		"sqlserver_linked_localserver_connectionString": {
-			"value": ""
-		},
-		"sqlserver_linked_localserver_password": {
-			"value": ""
-		},
-		"azuresqldatabase_dataset_connectionString": {
-			"value": ""
-		},
-		"azuresqldatabase_appdb_connectionString": {
-			"value": ""
-		},
-		"ADLS_JSON_dataset_accountKey": {
-			"value": ""
-		},
-		"adlsgen2_linkedstorage_properties_typeProperties_url": {
-			"value": "https://azurelake2022.dfs.core.windows.net/"
-		},
-		"linkedservice_IRselfhosted_properties_typeProperties_host": {
-			"value": "C:\\Users\\satish\\Work\\Azure"
-		},
-		"linkedservice_IRselfhosted_properties_typeProperties_userId": {
-			"value": "satish"
-		},
-		"sqlserver_linked_localserver_properties_typeProperties_userName": {
-			"value": "satish"
-		},
-		"ADLS_JSON_dataset_properties_typeProperties_url": {
-			"value": "https://azurelake2022.dfs.core.windows.net/"
-		},
 		"containerUri": {
 			"value": ""
 		},

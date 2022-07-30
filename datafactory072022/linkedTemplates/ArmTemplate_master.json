@@ -7,54 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "datafactory072022"
 		},
-		"adlsgen2_linkedstorage_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'adlsgen2_linkedstorage'"
-		},
-		"linkedservice_IRselfhosted_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'linkedservice_IRselfhosted'"
-		},
-		"sqlserver_linked_localserver_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sqlserver_linked_localserver'"
-		},
-		"sqlserver_linked_localserver_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'sqlserver_linked_localserver'"
-		},
-		"azuresqldatabase_dataset_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'azuresqldatabase_dataset'"
-		},
-		"azuresqldatabase_appdb_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'azuresqldatabase_appdb'"
-		},
-		"ADLS_JSON_dataset_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ADLS_JSON_dataset'"
-		},
-		"adlsgen2_linkedstorage_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://azurelake2022.dfs.core.windows.net/"
-		},
-		"linkedservice_IRselfhosted_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\satish\\Work\\Azure"
-		},
-		"linkedservice_IRselfhosted_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "satish"
-		},
-		"sqlserver_linked_localserver_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "satish"
-		},
-		"ADLS_JSON_dataset_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://azurelake2022.dfs.core.windows.net/"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -81,66 +33,10 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"adlsgen2_linkedstorage_accountKey": {
-						"value": "[parameters('adlsgen2_linkedstorage_accountKey')]"
-					},
-					"azuresqldatabase_dataset_connectionString": {
-						"value": "[parameters('azuresqldatabase_dataset_connectionString')]"
-					},
-					"azuresqldatabase_appdb_connectionString": {
-						"value": "[parameters('azuresqldatabase_appdb_connectionString')]"
-					},
-					"ADLS_JSON_dataset_accountKey": {
-						"value": "[parameters('ADLS_JSON_dataset_accountKey')]"
-					},
-					"linkedservice_IRselfhosted_password": {
-						"value": "[parameters('linkedservice_IRselfhosted_password')]"
-					},
-					"sqlserver_linked_localserver_connectionString": {
-						"value": "[parameters('sqlserver_linked_localserver_connectionString')]"
-					},
-					"sqlserver_linked_localserver_password": {
-						"value": "[parameters('sqlserver_linked_localserver_password')]"
-					},
-					"adlsgen2_linkedstorage_properties_typeProperties_url": {
-						"value": "[parameters('adlsgen2_linkedstorage_properties_typeProperties_url')]"
-					},
-					"ADLS_JSON_dataset_properties_typeProperties_url": {
-						"value": "[parameters('ADLS_JSON_dataset_properties_typeProperties_url')]"
-					},
-					"linkedservice_IRselfhosted_properties_typeProperties_host": {
-						"value": "[parameters('linkedservice_IRselfhosted_properties_typeProperties_host')]"
-					},
-					"linkedservice_IRselfhosted_properties_typeProperties_userId": {
-						"value": "[parameters('linkedservice_IRselfhosted_properties_typeProperties_userId')]"
-					},
-					"sqlserver_linked_localserver_properties_typeProperties_userName": {
-						"value": "[parameters('sqlserver_linked_localserver_properties_typeProperties_userName')]"
 					}
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "datafactory072022_ArmTemplate_1",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'datafactory072022_ArmTemplate_0')]"
-			]
 		}
 	]
 }
