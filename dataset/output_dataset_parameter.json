@@ -1,14 +1,13 @@
 {
-	"name": "DelimitedText1",
+	"name": "output_dataset_parameter",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adlsgen2_linkedstorage",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"file": {
-				"type": "string",
-				"defaultValue": "test123"
+			"folder_output": {
+				"type": "array"
 			}
 		},
 		"annotations": [],
@@ -16,12 +15,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().file",
-					"type": "Expression"
-				},
 				"folderPath": {
-					"value": "@dataset().file",
+					"value": "@dataset().folder_output",
 					"type": "Expression"
 				},
 				"fileSystem": "output"

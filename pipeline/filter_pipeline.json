@@ -1,0 +1,39 @@
+{
+	"name": "filter_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Filter pipeline",
+				"description": "filter values from the input",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.array1",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@less(item(), 9)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"array1": {
+				"type": "array",
+				"defaultValue": [
+					2,
+					4,
+					6,
+					9,
+					11
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-23T03:44:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

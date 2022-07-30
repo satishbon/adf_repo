@@ -4,7 +4,7 @@
 		"activities": [
 			{
 				"name": "lookup_pipeline",
-				"description": "testing git",
+				"description": "this pipeline check the data from sql db and add into adls",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -17,26 +17,108 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT TOP (5) [TerritoryID]\n      \n  FROM [testdb].[Sales].[SalesTerritory]",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
+						"referenceName": "sqlserver_local_dataset_dbparam",
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": "testdb"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach_pipeline",
+				"description": "linked with lookup pipeline",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "lookup_pipeline",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('lookup_pipeline').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "sqlserver_local_dataset_dbparam",
+									"type": "DatasetReference",
+									"parameters": {
+										"tablename": "Sales.SalesTerritory"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference",
+									"parameters": {
+										"file": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
 				}
 			}
 		],
-		"folder": {
-			"name": "adf_pipelines"
-		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2022-07-27T02:13:44Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

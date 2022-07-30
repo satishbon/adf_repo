@@ -1,0 +1,72 @@
+{
+	"name": "azuresqldatabase",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azuresqldatabase_dataset",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "WorkOrderID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OrderQty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "StockedQty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ScrappedQty",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "StartDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "EndDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DueDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ScrapReasonID",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "Production",
+			"table": "WorkOrder"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

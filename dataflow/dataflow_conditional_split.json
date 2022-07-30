@@ -1,0 +1,120 @@
+{
+	"name": "dataflow_conditional_split",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "azuresqldatabase",
+						"type": "DatasetReference"
+					},
+					"name": "conditionalsplitsource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "azuresqldatabase",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "azuresqldatabase",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          WorkOrderID as integer,",
+				"          ProductID as integer,",
+				"          OrderQty as integer,",
+				"          StockedQty as integer,",
+				"          ScrappedQty as integer,",
+				"          StartDate as timestamp,",
+				"          EndDate as timestamp,",
+				"          DueDate as timestamp,",
+				"          ScrapReasonID as integer,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> conditionalsplitsource",
+				"conditionalsplitsource split(ProductID==3,",
+				"     disjoint: false) ~> split1@(output1, output2)",
+				"split1@output1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          WorkOrderID as integer,",
+				"          ProductID as integer,",
+				"          OrderQty as integer,",
+				"          StockedQty as integer,",
+				"          ScrappedQty as integer,",
+				"          StartDate as timestamp,",
+				"          EndDate as timestamp,",
+				"          DueDate as timestamp,",
+				"          ScrapReasonID as integer,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ProductID,",
+				"          OrderQty,",
+				"          StartDate,",
+				"          EndDate,",
+				"          DueDate,",
+				"          ScrapReasonID,",
+				"          ModifiedDate",
+				"     )) ~> sink1",
+				"split1@output2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          WorkOrderID as integer,",
+				"          ProductID as integer,",
+				"          OrderQty as integer,",
+				"          StockedQty as integer,",
+				"          ScrappedQty as integer,",
+				"          StartDate as timestamp,",
+				"          EndDate as timestamp,",
+				"          DueDate as timestamp,",
+				"          ScrapReasonID as integer,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ProductID,",
+				"          OrderQty,",
+				"          StartDate,",
+				"          EndDate,",
+				"          DueDate,",
+				"          ScrapReasonID,",
+				"          ModifiedDate",
+				"     )) ~> sink2"
+			]
+		}
+	}
+}

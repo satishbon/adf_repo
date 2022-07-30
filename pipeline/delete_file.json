@@ -1,0 +1,48 @@
+{
+	"name": "delete_file",
+	"properties": {
+		"description": "deleting file from adls or onpremises",
+		"activities": [
+			{
+				"name": "delete_file",
+				"type": "Delete",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "files removed",
+						"value": "log.csv file remove from output folder in ADLS"
+					}
+				],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "dataset_adls",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "adlsgen2_linkedstorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "output"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-07-23T01:59:54Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

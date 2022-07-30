@@ -1,0 +1,17 @@
+{
+	"name": "linkedservice_IRselfhosted",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\satish\\Work\\Azure",
+			"userId": "satish",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiNDc1MjlhZi02NGU2LTRmYzMtYjEyOC0yMjQyOTQ5NTY3YWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-Selfhosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

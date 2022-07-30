@@ -1,0 +1,69 @@
+{
+	"name": "window_dataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlDB_appdb",
+						"type": "DatasetReference"
+					},
+					"name": "employeesalary"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ADLS_output_directory",
+						"type": "DatasetReference"
+					},
+					"name": "ADLSoutputlocation"
+				}
+			],
+			"transformations": [
+				{
+					"name": "window1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EmpID as short,",
+				"          Name as string,",
+				"          Gender as string,",
+				"          Date_of_Birth as date,",
+				"          Age as integer,",
+				"          Join_Date as date,",
+				"          GROSS as integer,",
+				"          Net_Pay as integer,",
+				"          Deduction as integer,",
+				"          Deduction_percentage as double,",
+				"          Designation as string,",
+				"          Department as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> employeesalary",
+				"employeesalary window(over(Department,",
+				"          Gender),",
+				"     asc(GROSS, true),",
+				"     gross_total_foreachdept = sum(GROSS),",
+				"          rank_based_on_gross = denseRank()) ~> window1",
+				"window1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Name as string,",
+				"          Category as string,",
+				"          Status as string,",
+				"          Error as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> ADLSoutputlocation"
+			]
+		}
+	}
+}

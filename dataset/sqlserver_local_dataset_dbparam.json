@@ -1,0 +1,25 @@
+{
+	"name": "sqlserver_local_dataset_dbparam",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlserver_linked_localserver",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"dbName": "testdb"
+			}
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "employee_salary"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

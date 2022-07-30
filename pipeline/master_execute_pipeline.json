@@ -1,0 +1,33 @@
+{
+	"name": "master_execute_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "master pipeline",
+				"description": "master pipeline to call child or worker pipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [
+					{
+						"name": "tablecopy",
+						"value": "copy databaselog on premises to ADLS"
+					}
+				],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "copy_onpremises_db_toADLS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"dbname_pipeline": "testdb",
+						"table_pipeline": "Databaselog"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-07-23T03:31:38Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

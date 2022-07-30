@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDB_appdb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azuresqldatabase_appdb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Course"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

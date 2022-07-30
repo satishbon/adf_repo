@@ -1,0 +1,38 @@
+{
+	"name": "append_variable",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "filelog",
+					"value": {
+						"value": "@pipeline().parameters.file",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"file": {
+				"type": "string",
+				"defaultValue": "logging"
+			}
+		},
+		"variables": {
+			"filelog": {
+				"type": "Array",
+				"defaultValue": [
+					"log1",
+					"log2"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-23T03:11:49Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

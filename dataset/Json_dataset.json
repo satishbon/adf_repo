@@ -1,0 +1,70 @@
+{
+	"name": "Json_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_JSON_dataset",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "employee.json",
+				"fileSystem": "input"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"firstName": {
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"gender": {
+					"type": "string"
+				},
+				"age": {
+					"type": "integer"
+				},
+				"address": {
+					"type": "object",
+					"properties": {
+						"streetAddress": {
+							"type": "string"
+						},
+						"city": {
+							"type": "string"
+						},
+						"state": {
+							"type": "string"
+						}
+					}
+				},
+				"skills": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"phoneNumbers": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"number": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
